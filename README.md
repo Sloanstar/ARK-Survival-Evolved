@@ -58,7 +58,7 @@ Feel free to overwrite these environment variables, using -e (--env):
 PORT=7777
 QUERYPORT=27015
 RCONPORT=27020
-FIXEDMAXPLAYERS=80
+FIXEDMAXPLAYERS=70
 FIXEDMAXTICKRATE=50
 RANDOM=NONE
 MODS="()"
