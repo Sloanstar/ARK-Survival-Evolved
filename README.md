@@ -2,13 +2,12 @@
 # Supported tags and respective `Dockerfile` links
 -	[`latest` (*bullseye/Dockerfile*)](https://github.com/CM2Walki/Squad/blob/master/bullseye/Dockerfile)
 
-# What is Squad?
-Squad is a tactical FPS that provides authentic combat experiences through teamwork, communication, and gameplay. It seeks to bridge the large gap between arcade shooter and military simulation. Large scale, combined arms combat, base building, and a great integrated VoIP system. <br/>
-This Docker image contains the dedicated server of the game. <br/>
+# What is ARK: Survival Evolved?
+As a man or woman stranded, naked, freezing, and starving on the unforgiving shores of a mysterious island called ARK, use your skill and cunning to kill or tame and ride the plethora of leviathan dinosaurs and other primeval creatures roaming the land. Hunt, harvest resources, craft items, grow crops, research technologies, and build shelters to withstand the elements and store valuables, all while teaming up with (or preying upon) hundreds of other players to survive, dominate... and escape! <br/>
 
-> [Squad](http://store.steampowered.com/app/393380/Squad/)
+> [ARK: Survival Evolved](http://store.steampowered.com/app/346110/ARK_Survival_Evolved/)
 
-<img src="https://vignette.wikia.nocookie.net/squadgame/images/2/27/Squad_logo.png/revision/latest?cb=20150625185705" alt="logo" width="300"/></img>
+<img src="https://vignette.wikia.nocookie.net/arksurvivalevolved_gamepedia/images/e/e6/Site-logo.png/revision/latest?cb=20220909010429" alt="logo" width="300"/></img>
 
 # How to use this image
 
