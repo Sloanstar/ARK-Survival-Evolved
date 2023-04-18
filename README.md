@@ -14,19 +14,19 @@ As a man or woman stranded, naked, freezing, and starving on the unforgiving sho
 ## Hosting a simple game server
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/squad-dedicated/ --name=squad-dedicated cm2network/squad
+$ docker run -d --net=host -v /home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se
 ```
 
 Running using a bind mount for data persistence on container recreation:
 ```console
-$ mkdir -p $(pwd)/squad-data
-$ chmod 777 $(pwd)/squad-data # Makes sure the directory is writeable by the unprivileged container user
-$ docker run -d --net=host -v $(pwd)/squad-data:/home/steam/squad-dedicated/ --name=squad-dedicated cm2network/squad
+$ mkdir -p $(pwd)/ark-data
+$ chmod 777 $(pwd)/ark-data # Makes sure the directory is writeable by the unprivileged container user
+$ docker run -d --net=host -v $(pwd)/ark-data:/home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se
 ```
 
 Running multiple instances (iterate PORT, QUERYPORT and RCONPORT):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/squad-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=squad-dedicated2 cm2network/squad
+$ docker run -d --net=host -v /home/steam/ark-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ark-dedicated2 sloanstar/ark-se
 ```
 
 **It's also recommended using "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
@@ -37,27 +37,27 @@ $ docker run -d --net=host -v /home/steam/squad-dedicated/ -e PORT=7788 -e QUERY
 version: '3.9'
 
 services:
-  squad:
-    image: cm2network/squad
-    container_name: squad
+  ark-se:
+    image: sloanstar/ark-se
+    container_name: ark-se
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /storage/squad/:/home/steam/squad-dedicated/
+      - /storage/ark/:/home/steam/ark-dedicated/
     environment:
-      - PORT=7787
-      - QUERYPORT=27165
-      - RCONPORT=21114
-      - FIXEDMAXPLAYERS=100
+      - PORT=7777
+      - QUERYPORT=27015
+      - RCONPORT=27020
+      - FIXEDMAXPLAYERS=70
 ```
 
 # Configuration
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env):
 ```dockerfile
-PORT=7787
-QUERYPORT=27165
-RCONPORT=21114
+PORT=7777
+QUERYPORT=27015
+RCONPORT=27020
 FIXEDMAXPLAYERS=80
 FIXEDMAXTICKRATE=50
 RANDOM=NONE
@@ -68,10 +68,11 @@ MODS="()"
 The config files can be edited using this command:
 
 ```console
-$ docker exec -it squad-dedicated nano /home/steam/squad-dedicated/SquadGame/ServerConfig/Server.cfg
+$ docker exec -it ark-dedicated nano /home/steam/ark-dedicated/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
+$ docker exec -it ark-dedicated nano /home/steam/ark-dedicated/ShooterGame/Saved/Config/LinuxServer/Game.ini
 ```
 
-If you want to learn more about configuring a Squad server check this [documentation](https://squad.gamepedia.com/Server_Configuration).
+If you want to learn more about configuring an ARK server check this [documentation](https://ark.gamepedia.com/Server_Configuration).
 
 ## Mods
 
