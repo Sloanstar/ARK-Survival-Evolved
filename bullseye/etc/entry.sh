@@ -17,7 +17,7 @@ else
 fi
 
 # Change rcon port on first launch, because the default config overwrites the commandline parameter (you can comment this out if it has done it's purpose)
-sed -i -e 's/Port=21114/'"Port=${RCONPORT}"'/g' "${STEAMAPPDIR}/SquadGame/ServerConfig/Rcon.cfg"
+# sed -i -e 's/Port=21114/'"Port=${RCONPORT}"'/g' "${STEAMAPPDIR}/SquadGame/ServerConfig/Rcon.cfg"
 
 echo "Clearing Mods..."
 # Clear all workshop mods:
@@ -39,10 +39,7 @@ then
 	done
 fi
 
-bash "${STEAMAPPDIR}/SquadGameServer.sh" \
+bash "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" \
 			Port="${PORT}" \
 			QueryPort="${QUERYPORT}" \
-			RCONPORT="${RCONPORT}" \
-			FIXEDMAXPLAYERS="${FIXEDMAXPLAYERS}" \
-			FIXEDMAXTICKRATE="${FIXEDMAXTICKRATE}" \
-			RANDOM="${RANDOM}"
+			RCONPORT="${RCONPORT}"
