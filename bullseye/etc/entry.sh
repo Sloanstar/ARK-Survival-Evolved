@@ -39,7 +39,4 @@ then
 	done
 fi
 
-bash "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" \
-			Port="${PORT}" \
-			QueryPort="${QUERYPORT}" \
-			RCONPORT="${RCONPORT}"
+bash "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPORT="${RCONPORT}" -server -log
