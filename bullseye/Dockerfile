@@ -20,13 +20,16 @@ COPY etc/entry.sh ${HOMEDIR}
 RUN set -x \
 	&& mkdir -p "${STEAMAPPDIR}" \
 	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
-	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}"
+	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
+	&& echo "* soft nofile 1000000" >> /etc/security/limits.conf \
+	&& echo "* hard nofile 1000000" >> /etc/security/limits.conf \
+	&& echo "session required pam_limits.so" >> /etc/pam.d/common-session
 
 ENV PORT=7777 \
 	QUERYPORT=27015 \
 	RCONPORT=27020 \
 	MAPNAME="TheIsland" \
-	SESSIONNAME="Docker Test"
+	SESSIONNAME="NA-PVE-UnOfficial-Docker"
 
 # Switch to user
 USER ${USER}
