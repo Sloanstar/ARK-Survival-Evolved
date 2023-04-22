@@ -14,14 +14,14 @@ As a man or woman stranded, naked, freezing, and starving on the unforgiving sho
 ## Hosting a simple game server
 Running on the *host* interface (recommended):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se
+$ docker run -d --net=host -v /home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se:latest
 ```
 
 Running using a bind mount for data persistence on container recreation:
 ```console
 $ mkdir -p $(pwd)/ark-data
 $ chmod 777 $(pwd)/ark-data # Makes sure the directory is writeable by the unprivileged container user
-$ docker run -d --net=host -v $(pwd)/ark-data:/home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se
+$ docker run -d --net=host -v $(pwd)/ark-data:/home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se:latest
 ```
 
 Running multiple instances (iterate PORT, QUERYPORT and RCONPORT):<br/>
