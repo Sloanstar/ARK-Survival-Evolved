@@ -26,7 +26,7 @@ $ docker run -d --net=host -v $(pwd)/ark-data:/home/steam/ark-dedicated/ --name=
 
 Running multiple instances (iterate PORT, QUERYPORT and RCONPORT):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/ark-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ark-dedicated2 sloanstar/ark-se
+$ docker run -d --net=host -v /home/steam/ark-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ark-dedicated2 sloanstar/ark-se:latest
 ```
 
 **It's also recommended using "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
