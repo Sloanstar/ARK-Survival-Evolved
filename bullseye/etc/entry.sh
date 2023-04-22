@@ -39,4 +39,5 @@ then
 	done
 fi
 
+ulimit -n 1000000
 bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPORT="${RCONPORT}" -server -log -crossplay
