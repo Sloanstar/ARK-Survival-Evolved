@@ -68,13 +68,13 @@ MODS="()"
 The config files can be edited using this command:
 
 ```console
-$ docker exec -it ark-dedicated nano /home/steam/ark-dedicated/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
-$ docker exec -it ark-dedicated nano /home/steam/ark-dedicated/ShooterGame/Saved/Config/LinuxServer/Game.ini
+$ docker exec -it ark-dedicated nano "${STEAMAPPDIR}"/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
+$ docker exec -it ark-dedicated nano "${STEAMAPPDIR}"/ShooterGame/Saved/Config/LinuxServer/Game.ini
 ```
 
 If you want to learn more about configuring an ARK server check this [documentation](https://ark.gamepedia.com/Server_Configuration).
 
-## Mods
+## Mods - TODO: Update for ARK
 
 Add each id to the MODS environment variable, for example `MODS="(13371337 12341234 1111111)"`
 
