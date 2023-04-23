@@ -42,4 +42,4 @@ declare -a MODS="${MODS}"
 
 ulimit -n 1000000
 echo App dir: "${STEAMAPPDIR}"
-bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPORT="${RCONPORT}" -server -log -crossplay
+bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPORT="${RCONPORT}" -crossplay -gameplaylogging
