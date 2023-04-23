@@ -24,6 +24,9 @@ COPY etc/entry.sh ${HOMEDIR}
 
 RUN set -x \
 	&& mkdir -p "${STEAMAPPDIR}" \
+	&& mkdir -p "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer" \
+	&& mkdir -p "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks" \
+	&& mkdir -p "${STEAMAPPDIR}/ShooterGame/Saved/Logs" \
 	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
 	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
 	&& echo "* soft nofile 1000000" >> /etc/security/limits.conf \
