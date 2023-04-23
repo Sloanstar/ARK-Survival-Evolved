@@ -19,15 +19,15 @@ fi
 # Change rcon port on first launch, because the default config overwrites the commandline parameter (you can comment this out if it has done it's purpose)
 # sed -i -e 's/Port=21114/'"Port=${RCONPORT}"'/g' "${STEAMAPPDIR}/SquadGame/ServerConfig/Rcon.cfg"
 
-echo "Clearing Mods..."
+#echo "Clearing Mods..."
 # Clear all workshop mods:
 # find all folders / files in mods folder which are numeric only;
 # remove the workshop mods
-find "${MODPATH}"/* -maxdepth 0 -regextype posix-egrep -regex ".*/[[:digit:]]+" | xargs -0 -d"\n" rm -R 2>/dev/null
+#find "${MODPATH}"/* -maxdepth 0 -regextype posix-egrep -regex ".*/[[:digit:]]+" | xargs -0 -d"\n" rm -R 2>/dev/null
 
 #Comment out SQUAD mod logic, evaluate for ARK later
 # Install mods (if defined)
-declare -a MODS="${MODS}"
+#declare -a MODS="${MODS}"
 #if (( ${#MODS[@]} ))
 #then
 #	echo "Installing Mods..."
@@ -40,6 +40,6 @@ declare -a MODS="${MODS}"
 #	done
 #fi
 
-ulimit -n 1000000
+#ulimit -n 1000000
 echo App dir: "${STEAMAPPDIR}"
-bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPORT="${RCONPORT}" -crossplay -gameplaylogging
+bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPort="${RCONPORT}"?RCONEnabled=True -crossplay -gameplaylogging
