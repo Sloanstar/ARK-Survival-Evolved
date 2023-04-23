@@ -7,10 +7,7 @@ ENV STEAMAPPID 376030
 ENV STEAMAPP ShooterGameServer
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}"
 
-VOLUME "${STEAMAPPDIR}"						#/home/steam/ShooterGameServer
-VOLUME "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer"	#/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-VOLUME "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks"		#/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-VOLUME "${STEAMAPPDIR}/ShooterGame/Saved/Logs"			#/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs"]
 
 #ENV STEAM_BETA_APP 774961
 #ENV STEAM_BETA_PASSWORD ""
