@@ -26,9 +26,9 @@ VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer",
 COPY etc/entry.sh ${HOMEDIR}
 
 RUN set -x \
-	&& mkdir -p "${STEAMAPPDIR}" \
-	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
-	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" \
+	&& mkdir -p "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
+	&& chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
+	&& chown "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
 	&& echo "* soft nofile 1000000" >> /etc/security/limits.conf \
 	&& echo "* hard nofile 1000000" >> /etc/security/limits.conf \
 	&& echo "session required pam_limits.so" >> /etc/pam.d/common-session
