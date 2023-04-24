@@ -42,4 +42,4 @@ fi
 
 #ulimit -n 1000000
 echo App dir: "${STEAMAPPDIR}"
-bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPort="${RCONPORT}"?RCONEnabled=True -crossplay -gameplaylogging
+bash -c "${STEAMAPPDIR}/ShooterGame/Binaries/Linux/ShooterGameServer" "${MAPNAME}"?listen?SessionName="${SESSIONNAME}" -crossplay
