@@ -7,11 +7,13 @@ ENV STEAMAPPID 376030
 ENV STEAMAPP ShooterGameServer
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}"
 
-VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs"]
-# /home/steam/ShooterGameServer
-# /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-# /home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-# /home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs", "${STEAMAPPDIR}/Cluster"]
+# Volumes 
+# /home/steam/ShooterGameServer						ARK Binaries - Only need one per physical rw, rest can be ro.
+# /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer	Linux Server Config
+# /home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks		ARK Saves
+# /home/steam/ShooterGameServer/ShooterGame/Saved/Logs			Log Directory
+# /home/steam/ShooterGameServer/Cluster					NFS/CIFS Mounted Drive To Share Cluster Data
 
 #ENV STEAM_BETA_APP 774961
 #ENV STEAM_BETA_PASSWORD ""
@@ -35,7 +37,8 @@ ENV PORT=7777 \
 	QUERYPORT=27015 \
 	RCONPORT=27020 \
 	MAPNAME="TheIsland" \
-	SESSIONNAME="NA-PVE-UnOfficial-Docker"
+	SESSIONNAME="NA-PVE-UnOfficial-Docker" \
+	CLUSTERKEY="OverrideThisValue"
 
 # Switch to user
 USER ${USER}
