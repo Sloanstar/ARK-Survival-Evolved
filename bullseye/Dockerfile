@@ -30,7 +30,8 @@ ENV PORT=7777 \
 	RCONPORT=27020 \
 	MAPNAME="TheIsland" \
 	SESSIONNAME="ARK-UnOfficial-Docker" \
-	CLUSTERKEY="OverrideThisValue"
+	CLUSTERKEY="OverrideThisValue" \
+	ADMINPW="0v3rR!deThisV@1ue
 
 #ENV MODS=42345245234,2452452345 #Comma delimited set of MOD IDs - no spaces.
 
