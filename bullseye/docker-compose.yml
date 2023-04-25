@@ -16,7 +16,7 @@ services:
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
-      - MAPNAME=TheIsland
+      - MAPNAME=Aberration_P
       - CLUSTERKEY=ChangeMe
       - ADMINPW=ChangeMe
     ports:
@@ -24,3 +24,52 @@ services:
       - "27015:27015/udp"
       - "7778:7778/udp"
       - "7777:7777/udp"
+  ARK101:
+    container_name: ARK101
+    image: sloanstar/ark-se:latest
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/ARK101/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK101/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK101/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+    environment:
+      - SESSIONNAME=ARK 101
+      - PORT=7877
+      - QUERYPORT=27115
+      - RCONPORT=27120
+      - MAPNAME=Genesis
+      - CLUSTERKEY=ChangeMe
+      - ADMINPW=ChangeMe
+    ports:
+      - "27120:27120/tcp"
+      - "27115:27115/udp"
+      - "7878:7878/udp"
+      - "7877:7877/udp"
+  ARK102:
+    container_name: ARK102
+    image: sloanstar/ark-se:latest
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/ARK102/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK102/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK102/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+    environment:
+      - SESSIONNAME=ARK 102
+      - PORT=7977
+      - QUERYPORT=27215
+      - RCONPORT=27220
+      - MAPNAME=Gen2
+      - CLUSTERKEY=ChangeMe
+      - ADMINPW=ChangeMe
+    ports:
+      - "27220:27220/tcp"
+      - "27215:27215/udp"
+      - "7978:7978/udp"
+      - "7977:7977/udp"
+
