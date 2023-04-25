@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  ARK100:
+    container_name: ARK100
+    image: sloanstar/ark-se:latest
+	restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - /opt/ARK-Server:/home/steam/ShooterGameServer
+      - /opt/ARK100/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK100/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+	  - /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+	  - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+    environment:
+      - SESSIONNAME="ARK 100"
+	  - PORT=7777
+	  - QUERYPORT=27015
+	  - RCONPORT=27020
+	  - MAPNAME="TheIsland"
+      - CLUSTERKEY="ChangeMe"
+	  - ADMINPW="ChangeMe"
+    ports:
+      - "27020:27020/tcp"
+      - "27015:27015/udp"
+      - "7778:7778/udp"
+      - "7777:7777/udp"
+
