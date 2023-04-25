@@ -42,7 +42,7 @@ USER ${USER}
 WORKDIR ${HOMEDIR}
 
 RUN mkdir -p "${STEAMAPPDIR}/Engine/Binaries/ThirdParty/SteamCMD/Linux" \
-	ln -s ${HOMEDIR}/steamcmd "${STEAMAPPDIR}/Engine/Binaries/ThirdParty/SteamCMD/Linux/steamcmd/"
+	&& ln -s ${HOMEDIR}/steamcmd "${STEAMAPPDIR}/Engine/Binaries/ThirdParty/SteamCMD/Linux/steamcmd/"
 
 CMD ["bash", "entry.sh"]
 
