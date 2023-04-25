@@ -16,6 +16,7 @@ VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer",
 # /home/steam/ShooterGameServer/Cluster					NFS/CIFS Mounted Drive To Share Cluster Data
 
 COPY etc/entry.sh ${HOMEDIR}
+COPY etc/GameUserSettings.ini "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer"
 
 RUN set -x \
 	&& mkdir -p "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
@@ -31,9 +32,8 @@ ENV PORT=7777 \
 	MAPNAME="TheIsland" \
 	SESSIONNAME="ARK-UnOfficial-Docker" \
 	CLUSTERKEY="OverrideThisValue" \
-	ADMINPW="0v3rR!deThisV@1ue
-
-#ENV MODS=42345245234,2452452345 #Comma delimited set of MOD IDs - no spaces.
+	ADMINPW="0v3rR!deThisV@1ue \
+	MODS=#Comma delimited set of MOD IDs - no spaces.
 
 # Switch to user
 USER ${USER}
