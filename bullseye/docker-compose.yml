@@ -17,9 +17,9 @@ services:
       - QUERYPORT=27015
       - RCONPORT=27020
       - MAPNAME=Aberration_P
-      - CLUSTERKEY=ChangeMe
-      - ADMINPW=ChangeMe
-      - MODS=
+      - CLUSTERKEY=${CLUSTERKEY}
+      - ADMINPW=${ADMINPW}
+      - MODS=${MODS}
     ports:
       - "27020:27020/tcp"
       - "27015:27015/udp"
@@ -42,9 +42,9 @@ services:
       - QUERYPORT=27115
       - RCONPORT=27120
       - MAPNAME=Genesis
-      - CLUSTERKEY=ChangeMe
-      - ADMINPW=ChangeMe
-      - MODS=
+      - CLUSTERKEY=${CLUSTERKEY}
+      - ADMINPW=${ADMINPW}
+      - MODS=${MODS}
     ports:
       - "27120:27120/tcp"
       - "27115:27115/udp"
@@ -67,9 +67,9 @@ services:
       - QUERYPORT=27215
       - RCONPORT=27220
       - MAPNAME=Gen2
-      - CLUSTERKEY=ChangeMe
-      - ADMINPW=ChangeMe
-      - MODS=
+      - CLUSTERKEY=${CLUSTERKEY}
+      - ADMINPW=${ADMINPW}
+      - MODS=${MODS}
     ports:
       - "27220:27220/tcp"
       - "27215:27215/udp"
