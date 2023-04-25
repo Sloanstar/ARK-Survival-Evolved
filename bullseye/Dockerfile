@@ -15,14 +15,6 @@ VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer",
 # /home/steam/ShooterGameServer/ShooterGame/Saved/Logs			Log Directory
 # /home/steam/ShooterGameServer/Cluster					NFS/CIFS Mounted Drive To Share Cluster Data
 
-#ENV STEAM_BETA_APP 774961
-#ENV STEAM_BETA_PASSWORD ""
-#ENV STEAM_BETA_BRANCH ""
-
-#ENV WORKSHOPID 393380
-#ENV MODPATH "${STEAMAPPDIR}/SquadGame/Plugins/Mods"
-#ENV MODS "()"
-
 COPY etc/entry.sh ${HOMEDIR}
 
 RUN set -x \
@@ -37,8 +29,10 @@ ENV PORT=7777 \
 	QUERYPORT=27015 \
 	RCONPORT=27020 \
 	MAPNAME="TheIsland" \
-	SESSIONNAME="NA-PVE-UnOfficial-Docker" \
+	SESSIONNAME="ARK-UnOfficial-Docker" \
 	CLUSTERKEY="OverrideThisValue"
+
+#ENV MODS=42345245234,2452452345 #Comma delimited set of MOD IDs - no spaces.
 
 # Switch to user
 USER ${USER}
