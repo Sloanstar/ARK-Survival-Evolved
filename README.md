@@ -12,12 +12,12 @@ As a man or woman stranded, naked, freezing, and starving on the unforgiving sho
 # How to use this image
 
 ## Hosting a simple game server
-Running on the *host* interface (recommended):<br/>
+Running on the *host* interface:<br/>
 ```console
 $ docker run -d --net=host -v /home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se:latest
 ```
 
-Running using a bind mount for data persistence on container recreation [b]RECOMMENDED[/b]:
+Running using a bind mount for data persistence on container recreation RECOMMENDED:
 ```console
 $ mkdir -p /opt/ARK-Server
 $ mkdir -p /opt/ARK-Cluster
