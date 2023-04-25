@@ -16,9 +16,9 @@ services:
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
-      - MAPNAME="TheIsland"
-      - CLUSTERKEY="ChangeMe"
-      - ADMINPW="ChangeMe"
+      - MAPNAME=TheIsland
+      - CLUSTERKEY=ChangeMe
+      - ADMINPW=ChangeMe
     ports:
       - "27020:27020/tcp"
       - "27015:27015/udp"
