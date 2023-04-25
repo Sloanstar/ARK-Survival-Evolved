@@ -19,6 +19,7 @@ services:
       - MAPNAME=Aberration_P
       - CLUSTERKEY=ChangeMe
       - ADMINPW=ChangeMe
+      - MODS=
     ports:
       - "27020:27020/tcp"
       - "27015:27015/udp"
@@ -43,6 +44,7 @@ services:
       - MAPNAME=Genesis
       - CLUSTERKEY=ChangeMe
       - ADMINPW=ChangeMe
+      - MODS=
     ports:
       - "27120:27120/tcp"
       - "27115:27115/udp"
@@ -67,6 +69,7 @@ services:
       - MAPNAME=Gen2
       - CLUSTERKEY=ChangeMe
       - ADMINPW=ChangeMe
+      - MODS=
     ports:
       - "27220:27220/tcp"
       - "27215:27215/udp"
