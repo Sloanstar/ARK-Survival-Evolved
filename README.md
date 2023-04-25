@@ -36,7 +36,12 @@ $ docker run -it --name ARK100 --network host \
 
 Running multiple instances (iterate PORT, QUERYPORT and RCONPORT and change Server Specific Folder):<br/>
 ```console
-$ docker run -d --net=host -v /home/steam/ark-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ark-dedicated2 sloanstar/ark-se:latest
+$ docker run -d --net=host -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ARK101 \
+	-v /opt/ARK-Server:/home/steam/ShooterGameServer \
+	-v /opt/ARK101/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer \
+	-v /opt/ARK101/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks \
+	-v /opt/ARK101/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs \
+	sloanstar/ark-se:latest
 ```
 
 **It's also recommended using "--cpuset-cpus=" to limit the game server to a specific core & thread.**<br/>
