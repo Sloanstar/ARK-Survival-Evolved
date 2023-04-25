@@ -17,14 +17,24 @@ Running on the *host* interface (recommended):<br/>
 $ docker run -d --net=host -v /home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se:latest
 ```
 
-Running using a bind mount for data persistence on container recreation:
+Running using a bind mount for data persistence on container recreation [b]RECOMMENDED[/b]:
 ```console
-$ mkdir -p $(pwd)/ark-data
-$ chmod 777 $(pwd)/ark-data # Makes sure the directory is writeable by the unprivileged container user
-$ docker run -d --net=host -v $(pwd)/ark-data:/home/steam/ark-dedicated/ --name=ark-dedicated sloanstar/ark-se:latest
+$ mkdir -p /opt/ARK-Server
+$ mkdir -p /opt/ARK-Cluster
+$ mkdir -p /opt/ARK100/Logs
+$ mkdir -p /opt/ARK100/SavedArks
+$ mkdir -p /opt/ARK100/Config
+$ chmod -R 777 /opt/ARK-Server /opt/ARK-Cluster /opt/ARK100 # Makes sure the directory is writeable by the unprivileged container user
+$ docker run -it --name ARK100 --network host \
+	-v /opt/ARK-Server:/home/steam/ShooterGameServer \
+	-v /opt/ARK100/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer \
+	-v /opt/ARK100/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks \
+	-v /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs \
+	sloanstar/ark-se:latest
+
 ```
 
-Running multiple instances (iterate PORT, QUERYPORT and RCONPORT):<br/>
+Running multiple instances (iterate PORT, QUERYPORT and RCONPORT and change Server Specific Folder):<br/>
 ```console
 $ docker run -d --net=host -v /home/steam/ark-dedicated/ -e PORT=7788 -e QUERYPORT=27166 -e RCONPORT=21115 --name=ark-dedicated2 sloanstar/ark-se:latest
 ```
@@ -43,11 +53,19 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /storage/ark/:/home/steam/ShooterGameServer/
+      - /opt/ARK-Server:/home/steam/ShooterGameServer
+      - /opt/ARK100/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK100/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
     environment:
+      - SESSIONNAME="ARK 100"
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
+      - MAPNAME=TheIsland
+      - CLUSTERKEY=ChangeMe
+      - ADMINPW=ChangeMe
 ```
 
 # Configuration
@@ -57,15 +75,14 @@ Feel free to overwrite these environment variables, using -e (--env):
 PORT=7777
 QUERYPORT=27015
 RCONPORT=27020
-MODS="()"
 ```
 
 ## Config
 The config files can be edited using this command:
 
 ```console
-docker exec -it ark-dedicated nano /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
-docker exec -it ark-dedicated nano /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer/Game.ini
+docker exec -it {Container Name} nano /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer/GameUserSettings.ini
+docker exec -it {Container Name} nano /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer/Game.ini
 ```
 
 If you want to learn more about configuring an ARK server check this [documentation](https://ark.gamepedia.com/Server_Configuration).
