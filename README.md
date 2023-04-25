@@ -100,5 +100,12 @@ Add each id to the MODS environment variable, for example `MODS="(13371337 12341
 
 You can get the mod id from the workshop url or by installing it locally and lookup the numeric folder name at `<root_steam_folder>/steamapps/workshop/content/393380`.
 
+## Server Wipes
+You can wipeout all the ARK world and character data with this command if you followed the docker compose layout:
+
+```console
+$ find /opt/ARK* -name *.ark* -delete
+```
+
 # Contributors
 [![Contributors Display](https://badges.pufler.dev/contributors/CM2Walki/Squad?size=50&padding=5&bots=false)](https://github.com/CM2Walki/Squad/graphs/contributors)
