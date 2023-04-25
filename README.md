@@ -64,7 +64,7 @@ services:
       - /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
     environment:
-      - SESSIONNAME="ARK 100"
+      - SESSIONNAME=ARK 100
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
