@@ -38,7 +38,7 @@ then
 		"${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" +login anonymous +workshop_download_item "${WORKSHOPID}" "${MODID}" +quit
 
 		echo -e "\n> Link mod content '${MODID}'"
-		ln -s "${STEAMAPPDIR}/steamapps/workshop/content/${WORKSHOPID}/${MODID}" "${MODPATH}/${MODID}"
+		ln -s "${STEAMAPPDIR}/steamapps/workshop/content/${WORKSHOPID}/${MODID}/" "${MODPATH}/${MODID}"
 	done
 	
 	declare -i LEN="${#MODS[@]}"-1
