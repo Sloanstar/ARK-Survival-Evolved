@@ -7,6 +7,10 @@ ENV STEAMAPPID 376030
 ENV STEAMAPP ShooterGameServer
 ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}"
 
+ENV WORKSHOPID 393380
+ENV MODPATH "${STEAMAPPDIR}/ShooterGame/Content/Mods"
+ENV MODS "()" #Space delimited set of MOD IDs.
+
 VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs", "${STEAMAPPDIR}/Cluster"]
 # Volumes 
 # /home/steam/ShooterGameServer						ARK Binaries - Only need one per physical rw, rest can be ro.
@@ -33,8 +37,6 @@ ENV PORT=7777 \
 	SESSIONNAME="ARK-UnOfficial-Docker" \
 	CLUSTERKEY="OverrideThisValue" \
 	ADMINPW="0v3rR!deThisV@1ue"
-
-#ENV MODS=#Comma delimited set of MOD IDs - no spaces.
 
 # Switch to user
 USER ${USER}
