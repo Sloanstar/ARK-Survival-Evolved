@@ -20,13 +20,11 @@ fi
 echo Map: "${MAPNAME}"
 
 # Launch with mods (if defined - recommended to put mods in INI file but will support CLI)
-if [ -n "$MODS" ]
-then
-	echo "Clearing Mods..."
-	# Clear all workshop mods:
-	# find all folders / files in mods folder which are numeric only;
-	# remove the workshop mods
-	find "${MODPATH}"/* -maxdepth 0 -regextype posix-egrep -regex ".*/[[:digit:]]+" | xargs -0 -d"\n" rm -R 2>/dev/null
+echo "Clearing Mods..."
+# Clear all workshop mods:
+# find all folders / files in mods folder which are numeric only;
+# remove the workshop mods
+find "${MODPATH}"/* -maxdepth 0 -regextype posix-egrep -regex ".*/[[:digit:]]+" | xargs -0 -d"\n" rm -R 2>/dev/null
 
 # Install mods (if defined)
 declare -a MODS="${MODS}"
@@ -51,7 +49,7 @@ then
                 fi
         done
 	echo GameModIds: $GAMEMODIDS
-fi
+	
 	echo CLI: "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPort="${RCONPORT}"?RCONEnabled=True?ServerAdminPassword="${ADMINPW}"?GameModIds="${GAMEMODIDS}" -NoTransferFromFiltering -clusterid="${CLUSTERKEY}" -ClusterDirOverride="${STEAMAPPDIR}/Cluster" -crossplay -gameplaylogging -UseStructureStasisGrid -lowmemory -ForceRespawnDinos -UseDynamicConfig
 	"${STEAMAPPDIR}"/ShooterGame/Binaries/Linux/ShooterGameServer "${MAPNAME}"?listen?SessionName="${SESSIONNAME}"?Port="${PORT}"?QueryPort="${QUERYPORT}"?RCONPort="${RCONPORT}"?RCONEnabled=True?ServerAdminPassword="${ADMINPW}"?GameModIds="${GAMEMODIDS}" -NoTransferFromFiltering -clusterid="${CLUSTERKEY}" -ClusterDirOverride="${STEAMAPPDIR}/Cluster" -crossplay -gameplaylogging -UseStructureStasisGrid -lowmemory -ForceRespawnDinos -UseDynamicConfig
 else
