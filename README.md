@@ -92,13 +92,15 @@ docker exec -it {Container Name} nano /home/steam/ShooterGameServer/ShooterGame/
 
 If you want to learn more about configuring an ARK server check this [documentation](https://ark.gamepedia.com/Server_Configuration).
 
-## Mods - TODO: Update for ARK
+## Mods - Fair warning - it's messy.
 
 Add each id to the MODS environment variable, for example `MODS="(13371337 12341234 1111111)"`
 
-> MODS must be a bash array `(mod1id mod2id mod3id)` where each mod id is separated by a space and inclosed in brackets
+> MODS must be a bash array `(mod1id mod2id mod3id)` where each mod id is separated by a space and enclosed in parentheses.
 
-You can get the mod id from the workshop url or by installing it locally and lookup the numeric folder name at `<root_steam_folder>/steamapps/workshop/content/393380`.
+You can get the mod id from the workshop url or by installing it locally and lookup the numeric folder name at `<root_steam_folder>/steamapps/workshop/content/346110`.
+
+ARK Mod management in linux is abysmal and there's no excusr for it. If you try to use the documented -automanagedmods you will crash your linux server with a segmentation fault every time. I looked for a fix to this and found some documentation that SteamCMD should be installed in a ThirdParty subdir under the server path, but this did not fix the segfault. After trying a few more things to get the documented options working and failing I abandoned the process and adapted the Squad logic from the template to ARK. It should be considered experimental at this point, but please try it and open an issue if it doesn't work.
 
 ## Server Wipes
 You can wipeout all the ARK world and character data with this command if you followed the docker compose layout:
