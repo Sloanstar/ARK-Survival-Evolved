@@ -10,7 +10,12 @@ services:
       - /opt/ARK100/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK100/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - type: volume
+        source: ClusterNFS
+        target: /home/steam/ShooterGameServer/Cluster
+        volume:
+          nocopy: true
     environment:
       - SESSIONNAME=ARK 100
       - PORT=7777
@@ -35,7 +40,12 @@ services:
       - /opt/ARK101/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK101/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK101/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - type: volume
+        source: ClusterNFS
+        target: /home/steam/ShooterGameServer/Cluster
+        volume:
+          nocopy: true
     environment:
       - SESSIONNAME=ARK 101
       - PORT=7877
@@ -60,7 +70,12 @@ services:
       - /opt/ARK102/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK102/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK102/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      - /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - type: volume
+        source: ClusterNFS
+        target: /home/steam/ShooterGameServer/Cluster
+        volume:
+          nocopy: true
     environment:
       - SESSIONNAME=ARK 102
       - PORT=7977
@@ -76,3 +91,9 @@ services:
       - "7978:7978/udp"
       - "7977:7977/udp"
 
+volumes:
+  ClusterNFS:
+    driver_opts:
+      type: "nfs"
+      o: "addr=${NFSIP},nolock,soft,rw"
+      device: ":${NFSPATH}"
