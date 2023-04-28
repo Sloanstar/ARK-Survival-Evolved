@@ -73,6 +73,15 @@ services:
       - ADMINPW=ChangeMe
 ```
 
+### .env File Example
+```console
+ADMINPW=SuperSecretPW		#This grants ARK admin rights to users. Make it dificult. Used by entrypoint
+CLUSTERKEY=ShouldBeSecret	#This key is shared beween ARKs. It matters if you are hosting a cluster of servers, it must match for transfers. Used by entrypoint.
+MODS='( )'			#A space separated array of mods to download and install. '( )' is an empty array - no mods. used by entrypoint.
+NFSIP=1.1.1.1 			#IP Address of NFS server - useful for sharing cluster data across multiple physical hosts. Used in compose.
+NFSPATH="/pat/to/nfs/export"	#The path to the NFS export, do not include the ":" I have done that in the docker-compose.yml. Used in compose.
+```
+
 # Configuration
 ## Environment Variables
 Feel free to overwrite these environment variables, using -e (--env):
