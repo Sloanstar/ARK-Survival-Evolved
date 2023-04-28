@@ -75,9 +75,9 @@ services:
 
 ### .env File Example
 ```console
-ADMINPW=SuperSecretPW		#This grants ARK admin rights to users. Make it dificult. Used by entrypoint
+ADMINPW=SuperSecretPW		#This grants ARK admin rights to users. Make it dificult. Used by entrypoint.
 CLUSTERKEY=ShouldBeSecret	#This key is shared beween ARKs. It matters if you are hosting a cluster of servers, it must match for transfers. Used by entrypoint.
-MODS='( )'			#A space separated array of mods to download and install. '( )' is an empty array - no mods. used by entrypoint.
+MODS=				#A space separated string of mods to download and install. '' is an empty string - no mods. Used by entrypoint.
 NFSIP=1.1.1.1 			#IP Address of NFS server - useful for sharing cluster data across multiple physical hosts. Used in compose.
 NFSPATH="/pat/to/nfs/export"	#The path to the NFS export, do not include the ":" I have done that in the docker-compose.yml. Used in compose.
 ```
@@ -103,9 +103,9 @@ If you want to learn more about configuring an ARK server check this [documentat
 
 ## Mods - Fair warning - it's messy.
 
-Add each id to the MODS environment variable, for example `MODS="(13371337 12341234 1111111)"`
+Add each id to the MODS environment variable, for example `MODS="13371337 12341234 1111111"`
 
-> MODS must be a bash array `(mod1id mod2id mod3id)` where each mod id is separated by a space and enclosed in parentheses.
+> MODS must be a space delimited string where each mod id is separated by a space.
 
 You can get the mod id from the workshop url or by installing it locally and lookup the numeric folder name at `<root_steam_folder>/steamapps/workshop/content/346110`.
 
