@@ -6,18 +6,18 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /opt/ARK-Server:/home/steam/ShooterGameServer
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:rw
       - /opt/ARK100/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK100/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK100/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - /opt/Steam:/home/steam/Steam:rw
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
     environment:
-      - SESSIONNAME=ARK 100
+      - SESSIONNAME=ARK100
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
@@ -40,7 +40,7 @@ services:
       - /opt/ARK101/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK101/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK101/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - /opt/Steam:/home/steam/Steam:ro
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
@@ -70,7 +70,7 @@ services:
       - /opt/ARK102/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
       - /opt/ARK102/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
       - /opt/ARK102/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      #- /opt/ARK-Cluster:/home/steam/ShooterGameServer/Cluster
+      - /opt/Steam:/home/steam/Steam:ro
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
