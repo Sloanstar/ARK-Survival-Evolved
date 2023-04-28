@@ -25,6 +25,11 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+    healthcheck:
+        test: ["CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/2702"]
+        interval: 30s
+        timeout: 10s
+        start_period: 30s
     ports:
       - "27020:27020/tcp"
       - "27015:27015/udp"
@@ -33,7 +38,7 @@ services:
   ARK101:
     container_name: ARK101
     image: sloanstar/ark-se:latest
-    restart: unless-stopped
+    #restart: unless-stopped
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
@@ -55,6 +60,10 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+    restart: on-failure
+    depends_on:
+      ARK100:
+        condition: service_healthy
     ports:
       - "27120:27120/tcp"
       - "27115:27115/udp"
@@ -63,7 +72,7 @@ services:
   ARK102:
     container_name: ARK102
     image: sloanstar/ark-se:latest
-    restart: unless-stopped
+    #restart: unless-stopped
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
@@ -85,6 +94,10 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+    restart: on-failure
+    depends_on:
+      ARK100:
+        condition: service_healthy
     ports:
       - "27220:27220/tcp"
       - "27215:27215/udp"
