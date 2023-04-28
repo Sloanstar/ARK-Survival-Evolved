@@ -9,7 +9,7 @@ ENV STEAMAPPDIR "${HOMEDIR}/${STEAMAPP}"
 
 ENV WORKSHOPID 346110
 ENV MODPATH "${STEAMAPPDIR}/ShooterGame/Content/Mods"
-ENV MODS "()" #Space delimited set of MOD IDs.
+ENV MODS '' #Space delimited set of MOD IDs.
 
 VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs", "${STEAMAPPDIR}/Cluster", "${HOMEDIR}/Steam"]
 # Volumes 

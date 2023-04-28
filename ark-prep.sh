@@ -3,7 +3,11 @@ ARKSERVER=${ARKROOT}'/ARK-Server'
 ARKCLUSTER=${ARKROOT}'/ARK-Cluster'
 STEAM=${ARKROOT}'/Steam'
 declare -a BASEDIRS=( "${ARKSERVER}" "${ARKCLUSTER}" "${STEAM}" )
-declare -a ARKINSTANCES=('ARK100' 'ARK101' 'ARK102')
+#give opportunity to set ARK Instances in shell - if not build it.
+if [ -n "${ARKINSTANCES[@]}" ]
+then
+	declare -a ARKINSTANCES=('ARK100' 'ARK101' 'ARK102')
+fi
 
 echo Making Server Directories...
 for DIR in "${BASEDIRS[@]}"; do
