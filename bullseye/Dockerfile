@@ -30,7 +30,7 @@ RUN set -x \
 	&& echo "* hard nofile 1000000" >> /etc/security/limits.conf \
 	&& echo "session required pam_limits.so" >> /etc/pam.d/common-session \
 	&& apt update \
-	&& apt install -y perl-modules curl lsof libc6-i386 libgcc1 bzip2 sudo \
+	&& apt install -y perl-modules curl lsof libc6-i386 libgcc1 bzip2 sudo cron \
 	&& curl -sL https://raw.githubusercontent.com/arkmanager/ark-server-tools/master/netinstall.sh | sudo bash -s steam \
         && chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
 	&& chmod 777 "/etc/arkmanager" \
