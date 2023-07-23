@@ -17,7 +17,7 @@ services:
         volume:
           nocopy: true
     environment:
-      - SESSIONNAME=ARK100
+      - SESSIONNAME=ARK 100
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
