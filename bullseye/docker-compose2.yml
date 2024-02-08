@@ -1,15 +1,15 @@
 version: "3.9"
 services:
-  ARK224:
-    container_name: ARK224
+  ARK969:
+    container_name: ARK969
     image: sloanstar/ark-se:latest
     restart: unless-stopped
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:rw
-      - /opt/ARK224/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK224/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK224/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK969/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK969/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK969/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/Steam:/home/steam/Steam:rw
       - type: volume
         source: ClusterNFS
@@ -17,7 +17,7 @@ services:
         volume:
           nocopy: true
     environment:
-      - SESSIONNAME=OfficiallyARKed-PVE-Aberration-224
+      - SESSIONNAME=UnofficiallyARKed-PVP-GenTwo-969
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
@@ -26,7 +26,7 @@ services:
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
     healthcheck:
-        test: ["CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/2702"]
+        test: ["CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/27020"]
         interval: 30s
         timeout: 10s
         start_period: 30s
@@ -35,16 +35,15 @@ services:
       - "27015:27015/udp"
       - "7778:7778/udp"
       - "7777:7777/udp"
-  ARK504:
-    container_name: ARK504
+  ARK977:
+    container_name: ARK977
     image: sloanstar/ark-se:latest
-    #restart: unless-stopped
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
-      - /opt/ARK504/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK504/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK504/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK977/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK977/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK977/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/Steam:/home/steam/Steam:ro
       - type: volume
         source: ClusterNFS
@@ -52,33 +51,32 @@ services:
         volume:
           nocopy: true
     environment:
-      - SESSIONNAME=UnofficiallyARKed-PVE-Extinction-504
+      - SESSIONNAME=UnofficiallyARKed-PVE-GenTwo-977
       - PORT=7877
       - QUERYPORT=27115
       - RCONPORT=27120
-      - MAPNAME=Extinction
+      - MAPNAME=Gen2
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
     restart: on-failure
     depends_on:
-      ARK224:
+      ARK969:
         condition: service_healthy
     ports:
       - "27120:27120/tcp"
       - "27115:27115/udp"
       - "7878:7878/udp"
       - "7877:7877/udp"
-  ARK597:
-    container_name: ARK597
+  ARK548:
+    container_name: ARK548
     image: sloanstar/ark-se:latest
-    #restart: unless-stopped
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
-      - /opt/ARK597/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK597/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK597/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
+      - /opt/ARK548/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
+      - /opt/ARK548/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
+      - /opt/ARK548/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/Steam:/home/steam/Steam:ro
       - type: volume
         source: ClusterNFS
@@ -86,17 +84,17 @@ services:
         volume:
           nocopy: true
     environment:
-      - SESSIONNAME=UnofficiallyARKed-PVE-GenOne-597
+      - SESSIONNAME=UnofficiallyARKed-PVE-Valguero-548
       - PORT=7977
       - QUERYPORT=27215
       - RCONPORT=27220
-      - MAPNAME=Genesis
+      - MAPNAME=Gen2
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
     restart: on-failure
     depends_on:
-      ARK224:
+      ARK969:
         condition: service_healthy
     ports:
       - "27220:27220/tcp"
@@ -110,4 +108,3 @@ volumes:
       type: "nfs"
       o: "addr=${NFSIP},nolock,soft,rw"
       device: ":${NFSPATH}"
-
