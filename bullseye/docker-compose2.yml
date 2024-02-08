@@ -21,7 +21,7 @@ services:
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
-      - MAPNAME=Aberration_P
+      - MAPNAME=Gen2
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
@@ -88,7 +88,7 @@ services:
       - PORT=7977
       - QUERYPORT=27215
       - RCONPORT=27220
-      - MAPNAME=Gen2
+      - MAPNAME=Valguero_P
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
