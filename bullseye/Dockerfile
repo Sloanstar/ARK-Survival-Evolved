@@ -11,12 +11,11 @@ ENV WORKSHOPID 346110
 ENV MODPATH "${STEAMAPPDIR}/ShooterGame/Content/Mods"
 ENV MODS '' #Space delimited set of MOD IDs.
 
-VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer", "${STEAMAPPDIR}/ShooterGame/Saved/SavedArks", "${STEAMAPPDIR}/ShooterGame/Saved/Logs", "${STEAMAPPDIR}/Cluster", "${HOMEDIR}/Steam", "/etc/arkmanager" ]
+VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Content/Mods", "${STEAMAPPDIR}/ShooterGame/Saved", "${STEAMAPPDIR}/Cluster", "${HOMEDIR}/Steam", "/etc/arkmanager" ]
 # Volumes 
 # /home/steam/ShooterGameServer						ARK Binaries - Only need one per physical rw, rest can be ro.
-# /home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer	Linux Server Config
-# /home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks		ARK Saves
-# /home/steam/ShooterGameServer/ShooterGame/Saved/Logs			Log Directory
+# /home/steam/ShooterGameServer/ShooterGame/Content/Mods		ARK Mods Directory
+# /home/steam/ShooterGameServer/ShooterGame/Saved			ARK Persistent Saved Date
 # /home/steam/ShooterGameServer/Cluster					NFS/CIFS Mounted Drive To Share Cluster Data
 # /home/steam/Steam							Steam Binaries
 # /etc/arkmanager							ARK Manager Tools Configuration
