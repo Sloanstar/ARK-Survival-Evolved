@@ -16,6 +16,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK969/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVP-GenTwo-969
       - PORT=7777
@@ -50,6 +51,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK977/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-GenTwo-977
       - PORT=7877
@@ -83,6 +85,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK548/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-Valguero-548
       - PORT=7977
