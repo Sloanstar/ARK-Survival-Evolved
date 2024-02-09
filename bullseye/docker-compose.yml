@@ -18,7 +18,7 @@ services:
           nocopy: true
       - /opt/ARK224/arkmanager:/etc/arkmanager
     environment:
-      - SESSIONNAME=OfficiallyARKed-PVE-Aberration-224
+      - SESSIONNAME=UnofficiallyARKed-PVE-Aberration-224
       - PORT=7777
       - QUERYPORT=27015
       - RCONPORT=27020
