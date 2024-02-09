@@ -16,6 +16,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK224/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=OfficiallyARKed-PVE-Aberration-224
       - PORT=7777
@@ -51,6 +52,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK504/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-Extinction-504
       - PORT=7877
@@ -85,6 +87,7 @@ services:
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
+      - /opt/ARK597/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-GenOne-597
       - PORT=7977
