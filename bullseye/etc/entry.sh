@@ -1,4 +1,11 @@
 #!/bin/bash
+graceful_stop() {
+	echo "Intercepted Docker Stop - Attempting to gracefully stop server."
+	arkmanager stop --saveworld @all
+}
+
+trap graceful_stop SIGTERM SIGHUP SIGQUIT SIGINT
+
 if [ -n "${STEAM_BETA_BRANCH}" ]
 then
 	echo "Loading Steam Beta Branch"
@@ -16,7 +23,7 @@ else
 					+quit
 fi
 
-#ulimit -n 1000000
+ulimit -n 1000000
 echo Map: "${MAPNAME}"
 
 # Launch with mods (if defined - recommended to put mods in INI file but will support CLI)
