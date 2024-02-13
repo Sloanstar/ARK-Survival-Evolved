@@ -7,15 +7,15 @@ services:
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:rw
+      - /opt/Steam:/home/steam/Steam:rw
       - /opt/ARK969/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods
       - /opt/ARK969/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
-      - /opt/Steam:/home/steam/Steam:rw
+      - /opt/ARK969/etc/arkmanager:/etc/arkmanager
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK969/etc/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVP-GenTwo-969
       - PORT=7777
@@ -41,15 +41,15 @@ services:
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/Steam:/home/steam/Steam:ro
       - /opt/ARK977/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods
       - /opt/ARK977/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
-      - /opt/Steam:/home/steam/Steam:ro
+      - /opt/ARK977/etc/arkmanager:/etc/arkmanager
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK977/etc/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-GenTwo-977
       - PORT=7877
@@ -74,15 +74,15 @@ services:
     network_mode: "host"
     volumes:
       - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/Steam:/home/steam/Steam:ro
       - /opt/ARK548/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods
       - /opt/ARK548/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
-      - /opt/Steam:/home/steam/Steam:ro
+      - /opt/ARK548/etc/arkmanager:/etc/arkmanager
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK548/etc/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-Valguero-548
       - PORT=7977
