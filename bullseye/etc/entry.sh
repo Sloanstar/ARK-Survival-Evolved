@@ -11,7 +11,7 @@ then
 	echo "Loading Steam Beta Branch"
 	bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 					+login anonymous \
-					+app_update "${STEAM_BETA_APP}" \
+					+app_update "${STEAM_BETA_APP}" validate \
 					-beta "${STEAM_BETA_BRANCH}" \
 					-betapassword "${STEAM_BETA_PASSWORD}" \
 					+quit
@@ -19,7 +19,7 @@ else
 	echo "Loading Steam Release Branch"
 	bash "${STEAMCMDDIR}/steamcmd.sh" +force_install_dir "${STEAMAPPDIR}" \
 					+login anonymous \
-					+app_update "${STEAMAPPID}" \
+					+app_update "${STEAMAPPID}" validate \
 					+quit
 fi
 
