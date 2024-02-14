@@ -6,17 +6,16 @@ services:
     restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /opt/ARK-Server:/home/steam/ShooterGameServer:rw
-      - /opt/ARK224/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK224/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK224/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
-      - /opt/Steam:/home/steam/Steam:rw
+      - /opt/Steam:/home/steam/Steam
+      - /opt/ARK-Server:/home/steam/ShooterGameServer
+      - /opt/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods
+      - /opt/ARK224/etc/arkmanager:/etc/arkmanager
+      - /opt/ARK224/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK224/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-Aberration-224
       - PORT=7777
@@ -27,10 +26,10 @@ services:
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
     healthcheck:
-        test: ["CMD", "echo", "-n", ">", "/dev/tcp/127.0.0.1/2702"]
+        test: /bin/bash -c "/usr/bin/echo -n > /dev/tcp/127.0.0.1/27020"
         interval: 30s
         timeout: 10s
-        start_period: 30s
+        start_period: 600s
     ports:
       - "27020:27020/tcp"
       - "27015:27015/udp"
@@ -42,17 +41,16 @@ services:
     #restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
-      - /opt/ARK504/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK504/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK504/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/Steam:/home/steam/Steam:ro
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods:ro
+      - /opt/ARK504/etc/arkmanager:/etc/arkmanager
+      - /opt/ARK504/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK504/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-Extinction-504
       - PORT=7877
@@ -77,17 +75,16 @@ services:
     #restart: unless-stopped
     network_mode: "host"
     volumes:
-      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
-      - /opt/ARK597/Config:/home/steam/ShooterGameServer/ShooterGame/Saved/Config/LinuxServer
-      - /opt/ARK597/SavedArks:/home/steam/ShooterGameServer/ShooterGame/Saved/SavedArks
-      - /opt/ARK597/Logs:/home/steam/ShooterGameServer/ShooterGame/Saved/Logs
       - /opt/Steam:/home/steam/Steam:ro
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods:ro
+      - /opt/ARK597/etc/arkmanager:/etc/arkmanager
+      - /opt/ARK597/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
       - type: volume
         source: ClusterNFS
         target: /home/steam/ShooterGameServer/Cluster
         volume:
           nocopy: true
-      - /opt/ARK597/arkmanager:/etc/arkmanager
     environment:
       - SESSIONNAME=UnofficiallyARKed-PVE-GenOne-597
       - PORT=7977
@@ -106,6 +103,39 @@ services:
       - "27215:27215/udp"
       - "7978:7978/udp"
       - "7977:7977/udp"
+  ARK851:
+    container_name: ARK851
+    image: sloanstar/ark-se:latest
+    restart: unless-stopped
+    network_mode: "host"
+    volumes:
+      - /opt/Steam:/home/steam/Steam:ro
+      - /opt/ARK-Server:/home/steam/ShooterGameServer:ro
+      - /opt/MODS:/home/steam/ShooterGameServer/ShooterGame/Content/Mods:ro
+      - /opt/ARK851/etc/arkmanager:/etc/arkmanager
+      - /opt/ARK851/Saved:/home/steam/ShooterGameServer/ShooterGame/Saved
+      - type: volume
+        source: ClusterNFS
+        target: /home/steam/ShooterGameServer/Cluster
+        volume:
+          nocopy: true
+    environment:
+      - SESSIONNAME=UnofficiallyARKed-PVE-CrystalIsles-851
+      - PORT=7787
+      - QUERYPORT=27025
+      - RCONPORT=27030
+      - MAPNAME=CrystalIsles
+      - CLUSTERKEY=${CLUSTERKEY}
+      - ADMINPW=${ADMINPW}
+      - MODS=${MODS}
+    depends_on:
+      ARK224:
+        condition: service_healthy
+    ports:
+      - "27030:27030/tcp"
+      - "27025:27025/udp"
+      - "7788:7788/udp"
+      - "7787:7787/udp"
 
 volumes:
   ClusterNFS:
