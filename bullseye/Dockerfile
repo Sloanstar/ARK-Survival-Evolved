@@ -22,6 +22,7 @@ VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Content/Mods", "${STEAMAPP
 
 COPY etc/entry.sh ${HOMEDIR}
 COPY etc/GameUserSettings.ini "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer"
+COPY etc/cron.d/ark-cron /etc/cron.d/ark-cron
 
 RUN set -x \
 	&& mkdir -p "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
@@ -29,12 +30,13 @@ RUN set -x \
 	&& echo "* hard nofile 1000000" >> /etc/security/limits.conf \
 	&& echo "session required pam_limits.so" >> /etc/pam.d/common-session \
 	&& apt update \
-	&& apt install -y perl-modules curl lsof libc6-i386 libgcc1 bzip2 sudo cron \
+	&& apt install -y perl-modules curl lsof libc6-i386 libgcc1 bzip2 sudo cron procps tar \
 	&& curl -sL https://raw.githubusercontent.com/arkmanager/ark-server-tools/master/netinstall.sh | sudo bash -s steam \
         && chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
 	&& chmod 777 "/etc/arkmanager" \
         && chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" "/etc/arkmanager" \
-	&& echo "*/15 * * * * steam arkmanager update --saveworld --warn --no-autostart @main" >> /etc/crontab \
+	&& chmod 744 /etc/cron.d/ark-cron \
+	&& crontab -u steam /etc/cron.d/ark-cron \
 	&& mkdir -p /etc/arkmanager/instances/
 
 COPY etc/arkmanager.cfg /etc/arkmanager/
@@ -47,7 +49,9 @@ ENV PORT=7777 \
 	MAPNAME="TheIsland" \
 	SESSIONNAME="ARK-UnOfficial-Docker" \
 	CLUSTERKEY="OverrideThisValue" \
-	ADMINPW="0v3rR!deThisV@1ue"
+	ADMINPW="0v3rR!deThisV@1ue" \
+	DISCORDID="ThisIsGarbage" \
+	DISCORDTOKEN="UseYourOwn"
 
 # Switch to user
 USER ${USER}
