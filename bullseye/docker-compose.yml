@@ -25,6 +25,8 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+      - DISCORDID=${DISCORDID}
+      - DISCORDTOKEN=${DISCORDTOKEN}
     healthcheck:
         test: /bin/bash -c "/usr/bin/echo -n > /dev/tcp/127.0.0.1/27020"
         interval: 30s
@@ -60,6 +62,8 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+      - DISCORDID=${DISCORDID}
+      - DISCORDTOKEN=${DISCORDTOKEN}
     restart: on-failure
     depends_on:
       ARK224:
@@ -94,6 +98,8 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+      - DISCORDID=${DISCORDID}
+      - DISCORDTOKEN=${DISCORDTOKEN}
     restart: on-failure
     depends_on:
       ARK224:
@@ -128,6 +134,8 @@ services:
       - CLUSTERKEY=${CLUSTERKEY}
       - ADMINPW=${ADMINPW}
       - MODS=${MODS}
+      - DISCORDID=${DISCORDID}
+      - DISCORDTOKEN=${DISCORDTOKEN}
     depends_on:
       ARK224:
         condition: service_healthy
