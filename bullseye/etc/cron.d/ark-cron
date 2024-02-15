@@ -1,4 +1,0 @@
-*/15 * * * * arkmanager update @main --warn --update-mods
-0 * * * *  rm -f ${STEAMAPPDIR}/ShooterGame/Saved/SavedArks/${MAPNAME}_*
-0 * * * *  arkmanager backup
-

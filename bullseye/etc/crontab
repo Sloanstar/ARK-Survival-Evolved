@@ -1,0 +1,7 @@
+#Docker crontab
+#From: https://blog.thesparktree.com/cron-in-docker
+#redirection at end of every command: >/proc/1/fd/1 2>/proc/1/fd/2
+*/15 * * * *	steam /usr/local/bin/arkmanager update @main --warn --update-mods >/proc/1/fd/1 2>/proc/1/fd/2
+0 * * * *	steam /usr/local/bin/arkmanager backup >/proc/1/fd/1 2>/proc/1/fd/2
+30 * * * *	steam /usr/local/bin/arkmanager broadcast "Cluster Discord is available at: discord.gg/mF9nSbeeZa" >/proc/1/fd/1 2>/proc/1/fd/2
+0 * * * *	steam rm -f ${STEAMAPPDIR}/ShooterGame/Saved/SavedArks/${MAPNAME}_* >/proc/1/fd/1 2>/proc/1/fd/2

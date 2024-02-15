@@ -1,0 +1,2 @@
+root      ALL=(ALL) NOPASSWD: ALL
+steam      ALL=(ALL) NOPASSWD: ALL

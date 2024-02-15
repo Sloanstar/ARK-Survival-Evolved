@@ -22,7 +22,6 @@ VOLUME ["${STEAMAPPDIR}", "${STEAMAPPDIR}/ShooterGame/Content/Mods", "${STEAMAPP
 
 COPY etc/entry.sh ${HOMEDIR}
 COPY etc/GameUserSettings.ini "${STEAMAPPDIR}/ShooterGame/Saved/Config/LinuxServer"
-COPY etc/cron.d/ark-cron /etc/cron.d/ark-cron
 
 RUN set -x \
 	&& mkdir -p "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
@@ -35,13 +34,13 @@ RUN set -x \
         && chmod 755 "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" \
 	&& chmod 777 "/etc/arkmanager" \
         && chown -R "${USER}:${USER}" "${HOMEDIR}/entry.sh" "${STEAMAPPDIR}" "${STEAMAPPDIR}/Cluster" "/etc/arkmanager" \
-	&& chmod 744 /etc/cron.d/ark-cron \
-	&& crontab -u steam /etc/cron.d/ark-cron \
+	&& rm -rf /etc/cron.*/* \
 	&& mkdir -p /etc/arkmanager/instances/
 
+COPY etc/crontab /etc/crontab
 COPY etc/arkmanager.cfg /etc/arkmanager/
 COPY etc/main.cfg /etc/arkmanager/instances/
-
+COPY etc/sudoers /etc/sudoers
 
 ENV PORT=7777 \
 	QUERYPORT=27015 \
